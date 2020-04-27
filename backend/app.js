@@ -69,32 +69,32 @@ async function handleGet(req, res, query) {
   /**
    * ***EDIT THIS***
    */
-  if (
-    query !== undefined &&
-    query.min_value !== undefined &&
-    query.max_value !== undefined
-  ) {
-    // Convert min_value and max_value from String to integer
-    min_value = parseInt(query.min_value);
-    max_value = parseInt(query.max_value);
+  // if (
+  //   query !== undefined &&
+  //   query.min_value !== undefined &&
+  //   query.max_value !== undefined
+  // ) {
+  //   // Convert min_value and max_value from String to integer
+  //   min_value = parseInt(query.min_value);
+  //   max_value = parseInt(query.max_value);
 
-    // Generate a random number
-    randomValue = generateRandomNumber(min_value, max_value);
-    console.log("randomValue: ", randomValue);
-  } else {
-    error = "ERROR: min_value or max_value not provided";
-  }
+  //   // Generate a random number
+  //   randomValue = generateRandomNumber(min_value, max_value);
+  //   console.log("randomValue: ", randomValue);
+  // } else {
+  //   error = "ERROR: min_value or max_value not provided";
+  // }
 
-  // Generate the output
-  /**
-   * ***EDIT THIS***
-   */
-  let output = {
-    randomValue: randomValue,
-    min_value: min_value,
-    max_value: max_value,
-    error: error,
-  };
+  // // Generate the output
+  // /**
+  //  * ***EDIT THIS***
+  //  */
+  // let output = {
+  //   randomValue: randomValue,
+  //   min_value: min_value,
+  //   max_value: max_value,
+  //   error: error,
+  // };
 
   // Convert output to JSON
   let outputString = JSON.stringify(output, null, 2);
