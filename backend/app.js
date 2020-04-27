@@ -13,16 +13,6 @@ app.use(cors());
 
 let port = 5000;
 
-// /**
-//  * ***NOT NECESSARY***
-//  * Generates a random integer number between min and max
-//  * @param {Number} min
-//  * @param {Number} max
-//  */
-// function generateRandomNumber(min, max) {
-//   return Math.floor(Math.random() * (max - min + 1)) + min;
-// }
-
 /**
  * A promise that resolves after t ms.
  * @param {Number} t
@@ -41,13 +31,10 @@ app.get("/", async function (req, res) {
   }
 });
 
-
 app.listen(port, (err) => {
   console.log(`Listening on port: ${port}`);
 });
 //-----------------------------------------------------------------------------
-
-
 
 /**
  * Handles a Get request
@@ -55,46 +42,43 @@ app.listen(port, (err) => {
  * @param {Object} res
  * @param {Object} query
  */
-/**
- * ***EDIT THIS***
- */
 async function handleGet(req, res, query) {
   let error = "NO_ERROR";
-  // let randomValue;
-  // let min_value;
-  // let max_value;
 
   console.log("query: ", JSON.stringify(query));
   // If there was a query (a query string was sent)
-  /**
-   * ***EDIT THIS***
-   */
-  // if (
-  //   query !== undefined &&
-  //   query.min_value !== undefined &&
-  //   query.max_value !== undefined
-  // ) {
-  //   // Convert min_value and max_value from String to integer
-  //   min_value = parseInt(query.min_value);
-  //   max_value = parseInt(query.max_value);
 
-  //   // Generate a random number
-  //   randomValue = generateRandomNumber(min_value, max_value);
-  //   console.log("randomValue: ", randomValue);
-  // } else {
-  //   error = "ERROR: min_value or max_value not provided";
-  // }
+  // The query should be copied into the "input" file
+  
+  exec("iverilog -o the_design input", (error, stdout, stderr) => {
+    if (error) {
+        console.log(`error: ${error.message}`);
+        return;
+    }
+    if (stderr) {
+        console.log(`stderr: ${stderr}`);
+        return;
+    }
+    console.log(`stdout: ${stdout}`);
+  });
 
-  // // Generate the output
-  // /**
-  //  * ***EDIT THIS***
-  //  */
-  // let output = {
-  //   randomValue: randomValue,
-  //   min_value: min_value,
-  //   max_value: max_value,
-  //   error: error,
-  // };
+  exec("vvp the_design", (error, stdout, stderr) => {
+    if (error) {
+        console.log(`error: ${error.message}`);
+        return;
+    }
+    if (stderr) {
+        console.log(`stderr: ${stderr}`);
+        return;
+    }
+    console.log(`stdout: ${stdout}`);
+  }); 
+
+  // The error output may be unnecessary as well...
+  // Generate the output
+  let output = {
+    error: error,
+  };
 
   // Convert output to JSON
   let outputString = JSON.stringify(output, null, 2);
