@@ -2,6 +2,8 @@
 
 const express = require("express");
 const app = express();
+// Using child_process to run the shell commands
+const { exec } = require("child_process");
 
 // We need cors middleware to bypass CORS security in browsers.
 const cors = require("cors");
@@ -11,14 +13,15 @@ app.use(cors());
 
 let port = 5000;
 
-/**
- * Generates a random integer number between min and max
- * @param {Number} min
- * @param {Number} max
- */
-function generateRandomNumber(min, max) {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-}
+// /**
+//  * ***NOT NECESSARY***
+//  * Generates a random integer number between min and max
+//  * @param {Number} min
+//  * @param {Number} max
+//  */
+// function generateRandomNumber(min, max) {
+//   return Math.floor(Math.random() * (max - min + 1)) + min;
+// }
 
 /**
  * A promise that resolves after t ms.
@@ -52,14 +55,20 @@ app.listen(port, (err) => {
  * @param {Object} res
  * @param {Object} query
  */
+/**
+ * ***EDIT THIS***
+ */
 async function handleGet(req, res, query) {
   let error = "NO_ERROR";
-  let randomValue;
-  let min_value;
-  let max_value;
+  // let randomValue;
+  // let min_value;
+  // let max_value;
 
   console.log("query: ", JSON.stringify(query));
   // If there was a query (a query string was sent)
+  /**
+   * ***EDIT THIS***
+   */
   if (
     query !== undefined &&
     query.min_value !== undefined &&
@@ -76,14 +85,15 @@ async function handleGet(req, res, query) {
     error = "ERROR: min_value or max_value not provided";
   }
 
-  counter++;
   // Generate the output
+  /**
+   * ***EDIT THIS***
+   */
   let output = {
     randomValue: randomValue,
     min_value: min_value,
     max_value: max_value,
     error: error,
-    counter: counter,
   };
 
   // Convert output to JSON
@@ -91,7 +101,7 @@ async function handleGet(req, res, query) {
   console.log("outputString: ", outputString);
 
   // Let's generate some artificial delay!
-  await delay(3000);
+  await delay(1000);
 
   // Send it back to the frontend.
   res.send(outputString);
