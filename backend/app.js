@@ -2,6 +2,7 @@
 
 const express = require("express");
 const app = express();
+
 // Using child_process to run the shell commands
 const { exec } = require("child_process");
 
@@ -43,50 +44,40 @@ app.listen(port, (err) => {
  * @param {Object} query
  */
 async function handleGet(req, res, query) {
-  let error = "NO_ERROR";
 
-  console.log("query: ", JSON.stringify(query));
-  // If there was a query (a query string was sent)
-
-  // The query should be copied into the "input" file
   
-  exec("iverilog -o the_design input", (error, stdout, stderr) => {
+  // The query should be copied into the "input" file
+
+  exec("iverilog -o design input", (error, stdout, stderr) => {
     if (error) {
-        console.log(`error: ${error.message}`);
-        return;
+      console.log(`error: ${error.message}`);
+      return;
     }
     if (stderr) {
-        console.log(`stderr: ${stderr}`);
-        return;
+      console.log(`stderr: ${stderr}`);
+      return;
     }
-    console.log(`stdout: ${stdout}`);
+    // console.log(`stdout: ${stdout}`);
   });
 
-  exec("vvp the_design", (error, stdout, stderr) => {
-    if (error) {
-        console.log(`error: ${error.message}`);
-        return;
-    }
-    if (stderr) {
-        console.log(`stderr: ${stderr}`);
-        return;
-    }
-    console.log(`stdout: ${stdout}`);
-  }); 
-
-  // The error output may be unnecessary as well...
-  // Generate the output
-  let output = {
-    error: error,
-  };
-
-  // Convert output to JSON
-  let outputString = JSON.stringify(output, null, 2);
-  console.log("outputString: ", outputString);
-
-  // Let's generate some artificial delay!
   await delay(1000);
 
-  // Send it back to the frontend.
-  res.send(outputString);
+  let data = exec("vvp design", (error, stdout, stderr) => {
+    if (error) {
+      console.log(`error: ${error.message}`);
+      return;
+    }
+    if (stderr) {
+      console.log(`stderr: ${stderr}`);
+      return;
+    }
+    console.log(`${stdout}`);
+
+    // Convert output to JSON
+    let outputString = JSON.stringify(stdout);
+
+    // Send it back to the frontend.
+    res.send(outputString);
+
+  });
 }

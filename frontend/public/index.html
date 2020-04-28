@@ -7,8 +7,9 @@
       rel="stylesheet"
       id="bootstrap-css"
     />
-    <!-- Loading our own styles which is an animation for spinning wheels indicating waiting time -->
-    <link href="style.css" rel="stylesheet" id="bootstrap-css" />
+    <!-- Loading animation not needed... -->
+    <!-- Loading our own styles which is an animation for spinning wheels indicating waiting time
+    <link href="style.css" rel="stylesheet" id="bootstrap-css" /> -->
 
     <!-- Loading bootstrap css file to format our html -->
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
@@ -17,7 +18,7 @@
     <!-- Loading axios library necessary for making HTTP GET requests -->
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
-    <title>Random Generator</title>
+    <title>Verilgo Simulator</title>
   </head>
   <body>
     <div class="container">
@@ -29,47 +30,55 @@
         <div class="panel panel-info">
           <div class="panel-heading">
             <div class="panel-title">
-              I'm a true random generator!
+              Paste your verilog files in the text box below 
             </div>
           </div>
 
           <div>
             <div>
-              <span>Select the min and max values.</span>
-
+              <span>Since your verilog files will be compiled in one file together, there is no need for using 'include' for including modules. Do not use it.</span>
+              <br>
               <div>
-                <input
-                  type="number"
-                  name="min_value"
-                  id="min_value"
-                  placeholder="min value"
-                />
-                <input
-                  type="number"
-                  name="max_value"
-                  id="max_value"
-                  placeholder="max value"
-                />
+                <table>
+                  <tr>
+                    <td>
+                      <textarea id="verilog_code" rows="15" cols="44" >
+                      </textarea>  
+                    </td>
+                    <td>
+                      <textarea id="output_results" rows="15" cols="44" >
+                      </textarea> 
+                      <!-- <span id="sim output">  </span> -->
+                      <!-- <textarea id="results" rows="30" cols="44">
+                      </textarea></td> -->
+                  </tr>
+                </table>
+                <br>
+                <!-- <input
+                  type="text"
+                  name="code"
+                  id="code"
+                  placeholder="Paste Code Here"
+                /> -->
               </div>
-            </div>
+            </div> 
             <div class="text-center padding-y-sm btn-lg btn-block">
               <input
                 type="submit"
                 name="submit"
                 id="submit"
-                value="Generate!"
+                value="Simulate!"
                 class="btn btn-primary mt-8"
                 onclick="submit()"
               />
             </div>
 
             <div class="text-center padding-y-sm btn-lg btn-block">
-              
-              <!-- Spinning wheel  -->
-              <span class="loader text-center" id="loader">  </span>
-
+            <!-- <div>
+              Output will be posted after this...
+            </div> -->
               <!-- ** show random value here. We modify the text in this span through javascript! ** -->
-              <span id="random-value">  </span>
+              <!-- <span id="sim output">  </span> -->
             </div>
           </div>
         </div>
