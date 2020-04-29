@@ -8,8 +8,8 @@
       id="bootstrap-css"
     />
     <!-- Loading animation not needed... -->
-    <!-- Loading our own styles which is an animation for spinning wheels indicating waiting time
-    <link href="style.css" rel="stylesheet" id="bootstrap-css" /> -->
+    <!-- Loading our own styles which is an animation for spinning wheels indicating waiting time -->
+    <link href="style.css" rel="stylesheet" id="bootstrap-css" />
 
     <!-- Loading bootstrap css file to format our html -->
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
@@ -24,61 +24,50 @@
     <div class="container">
       <div
         id="loginbox"
-        style="margin-top: 50px;"
-        class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2"
+        style="margin-top: 10px;"
+        class="mainbox col-md-11"
       >
         <div class="panel panel-info">
-          <div class="panel-heading">
-            <div class="panel-title">
-              Paste your verilog files in the text box below 
+          <div class="panel-heading" >
+            <div class="panel-title text-center" >
+              <h3>
+                Verilog Simulator
+              </h3>
             </div>
           </div>
-
           <div>
             <div>
-              <span>Since your verilog files will be compiled in one file together, there is no need for using 'include' for including modules. Do not use it.</span>
-              <br>
+              <h4 style="margin: 2.5em;">Paste your verilog files in the left text box below. Since your verilog files will be compiled in one file together, there is no need for using 'include' for including modules. Do not use it.</h4>
               <div>
                 <table>
                   <tr>
                     <td>
-                      <textarea id="verilog_code" rows="15" cols="44" >
+                      <h4 style="margin-left: 10em;">Verilog Code</h4>
+                      <textarea style="margin-left: 3.5em; margin-right: 3em;"id="verilog_code" rows="22" cols="50" >
                       </textarea>  
                     </td>
                     <td>
-                      <textarea id="output_results" rows="15" cols="44" >
+                      <div class="text-center padding-y-sm btn-lg btn-block">
+                        <input
+                          type="submit"
+                          name="submit"
+                          id="submit"
+                          value="Simulate!"
+                          class="btn btn-primary mt-8"
+                          onclick="submit()"
+                        />
+                      </div>
+                      <div class="text-center padding-y-sm btn-lg btn-block">
+                    </td>
+                    <td>
+                      <h4 style="margin-left: 9em;">Output Results</h4>
+                      <textarea style="margin-left: 3em; margin-right: 2.5em;"id="output_results" rows="22" cols="50" >
                       </textarea> 
-                      <!-- <span id="sim output">  </span> -->
-                      <!-- <textarea id="results" rows="30" cols="44">
-                      </textarea></td> -->
                   </tr>
                 </table>
                 <br>
-                <!-- <input
-                  type="text"
-                  name="code"
-                  id="code"
-                  placeholder="Paste Code Here"
-                /> -->
               </div>
             </div> 
-            <div class="text-center padding-y-sm btn-lg btn-block">
-              <input
-                type="submit"
-                name="submit"
-                id="submit"
-                value="Simulate!"
-                class="btn btn-primary mt-8"
-                onclick="submit()"
-              />
-            </div>
-
-            <div class="text-center padding-y-sm btn-lg btn-block">
-            <!-- <div>
-              Output will be posted after this...
-            </div> -->
-              <!-- ** show random value here. We modify the text in this span through javascript! ** -->
-              <!-- <span id="sim output">  </span> -->
             </div>
           </div>
         </div>
