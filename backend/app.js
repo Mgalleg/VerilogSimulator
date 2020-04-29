@@ -2,6 +2,7 @@
 
 const express = require("express");
 const app = express();
+const fs = require("fs");
 
 // Using child_process to run the shell commands
 const { exec } = require("child_process");
@@ -35,6 +36,9 @@ app.get("/", async function (req, res) {
 app.listen(port, (err) => {
   console.log(`Listening on port: ${port}`);
 });
+
+
+
 //-----------------------------------------------------------------------------
 
 /**
@@ -45,10 +49,14 @@ app.listen(port, (err) => {
  */
 async function handleGet(req, res, query) {
 
-  
-  // The query should be copied into the "input" file
+  const fs = require("fs");
 
-  exec("iverilog -o design input", (error, stdout, stderr) => {
+  fs.writeFile('input', Object.values(query), (err) => {
+    if (err) throw err;
+    console.log('The file has been saved!');
+  });
+
+  exec("iverilog -o test input", (error, stdout, stderr) => {
     if (error) {
       console.log(`error: ${error.message}`);
       return;
@@ -57,12 +65,12 @@ async function handleGet(req, res, query) {
       console.log(`stderr: ${stderr}`);
       return;
     }
-    // console.log(`stdout: ${stdout}`);
+    console.log(`stdout: ${stdout}`);
   });
+  
+  await delay(5000);
 
-  await delay(1000);
-
-  let data = exec("vvp design", (error, stdout, stderr) => {
+  exec("vvp test", (error, stdout, stderr) => {
     if (error) {
       console.log(`error: ${error.message}`);
       return;
@@ -78,6 +86,6 @@ async function handleGet(req, res, query) {
 
     // Send it back to the frontend.
     res.send(outputString);
-
+    console.log(outputString);
   });
 }
