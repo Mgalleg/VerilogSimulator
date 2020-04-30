@@ -65,10 +65,10 @@ async function handleGet(req, res, query) {
       console.log(`stderr: ${stderr}`);
       return;
     }
-    console.log(`stdout: ${stdout}`);
+    // console.log(`stdout: ${stdout}`);
   });
   
-  await delay(5000);
+  await delay(2000);
 
   exec("vvp test", (error, stdout, stderr) => {
     if (error) {
@@ -79,13 +79,13 @@ async function handleGet(req, res, query) {
       console.log(`stderr: ${stderr}`);
       return;
     }
-    console.log(`${stdout}`);
+    console.log(`stdout: ${stdout}`);
 
     // Convert output to JSON
     let outputString = JSON.stringify(stdout);
 
     // Send it back to the frontend.
     res.send(outputString);
-    console.log(outputString);
+    // console.log(outputString);
   });
 }

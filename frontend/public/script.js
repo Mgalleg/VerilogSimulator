@@ -37,12 +37,12 @@ async function submit() {
 
   let vcode = document.getElementById("verilog_code").value;
 
-  // let test = {
-  //   the: vcode
-  // };
+  let test = {
+    the: vcode
+  };
 
-  // console.log(Object.values(vcode));
-  // console.log(Object.values(test));
+  console.log(Object.values(vcode));
+  console.log(Object.values(test));
 
   simulation_output.innerHTML = "Please wait...";
 
