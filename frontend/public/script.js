@@ -37,12 +37,7 @@ async function submit() {
 
   let vcode = document.getElementById("verilog_code").value;
 
-  let test = {
-    the: vcode
-  };
-
   console.log(Object.values(vcode));
-  console.log(Object.values(test));
 
   let v = JSON.stringify(vcode);
   v = v.replace(/\%/g, '%25');
@@ -52,10 +47,6 @@ async function submit() {
   v = v.replace(/\#/g, '%23');
 
   v = JSON.parse(v);
-
-  for(let e of v) {
-    console.log(e);
-  }
 
   simulation_output.innerHTML = "Please wait...";
 
