@@ -44,10 +44,23 @@ async function submit() {
   console.log(Object.values(vcode));
   console.log(Object.values(test));
 
+  let v = JSON.stringify(vcode);
+  v = v.replace(/\%/g, '%25');
+  v = v.replace(/\//g, '%2F')
+  v = v.replace(/\\n/g, '%0D%0A');
+  v = v.replace(/\+/g, '%2B');
+  v = v.replace(/\#/g, '%23');
+
+  v = JSON.parse(v);
+
+  for(let e of v) {
+    console.log(e);
+  }
+
   simulation_output.innerHTML = "Please wait...";
 
   try {
-    let request = `http://127.0.0.1:5000/?vcode=${vcode}`;
+    let request = `http://127.0.0.1:5000/?vcode=${v}`;
 
     console.log("request: ", request);
 

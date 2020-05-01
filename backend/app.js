@@ -51,10 +51,44 @@ async function handleGet(req, res, query) {
 
   const fs = require("fs");
 
-  fs.writeFile('input', Object.values(query), (err) => {
+  console.log(Object.values(query));
+  let str = JSON.stringify(Object.values(query));
+  str = str.replace('%2C', '#')
+  
+  console.log(str)
+  str = JSON.parse(str);
+  console.log(str)
+
+  fs.writeFile('input', str, (err) => {
     if (err) throw err;
     console.log('The file has been saved!');
   });
+
+  // for (let key of Object.keys(req.query)) {
+  //   if (key.match(/category.*/)) {
+  //     categories.push(req.query[key]);
+  //   }
+  // }
+
+  // for(let e of value) {
+  //   let line = JSON.stringify('\n');
+  //   let text = JSON.stringify(value);
+
+  //   text = text + line;
+
+  //   fs.appendFile('input', text, {
+
+  //   }, (err) => {
+  //     console.log("Error: ", err);
+  //   }); 
+  // }
+
+  // for (let value of Object.values(query)) {
+  //   console.log(value);
+  //   for (let v of value) {
+  //     console.log(v);
+  //   }
+  // }
 
   exec("iverilog -o test input", (error, stdout, stderr) => {
     if (error) {
@@ -79,13 +113,12 @@ async function handleGet(req, res, query) {
       console.log(`stderr: ${stderr}`);
       return;
     }
-    console.log(`stdout: ${stdout}`);
+    // console.log(`stdout: ${stdout}`);
 
     // Convert output to JSON
     let outputString = JSON.stringify(stdout);
 
     // Send it back to the frontend.
     res.send(outputString);
-    // console.log(outputString);
   });
 }
