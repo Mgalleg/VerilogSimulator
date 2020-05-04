@@ -64,6 +64,11 @@ async function handleGet(req, res, query) {
   exec("iverilog -o e_file input", (error, stdout, stderr) => {
     if (error) {
       console.log(`error: ${error.message}`);
+
+      // Error message sent to the front end.
+      let outputString = JSON.stringify("Error: Syntax");
+    
+      res.send(outputString);
       return;
     }
     if (stderr) {
@@ -81,11 +86,15 @@ async function handleGet(req, res, query) {
   exec("vvp e_file", (error, stdout, stderr) => {
     if (error) {
       console.log(`error: ${error.message}`);
+      // Error message sent to the front end.
+      let outputString = JSON.stringify("Error");
+
+      res.send(outputString);
       return;
     }
     if (stderr) {
       console.log(`stderr: ${stderr}`);
-      return;
+      // return;
     }
     console.log(`stdout: ${stdout}`);
 
