@@ -23,3 +23,5 @@ https://youtu.be/r3UO0o8gHs0
 FUTURE CONSIDERATIONS
 
 One way to add more functionality to this project is to allow the user to upload their verilog files. This would be useful to users who already have verilog files and simply wish to simulate their designs without having to copy and paste their code. Another feature that could be added is a waveform display. This would require running another program in the backend. 
+
+
