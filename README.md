@@ -13,7 +13,12 @@ The project is composed of two parts: the frontend and the backend. The frontend
 Below is the link to a video explaining the project as well as some screenshots showing the simulator in action. 
 https://youtu.be/r3UO0o8gHs0
 
+![alt text](https://github.com/Mgalleg/VerilogSimulator/blob/master/Screen%20Shot%202020-05-03%20at%2011.33.06%20PM.png
+)
 
+![alt text](https://github.com/Mgalleg/VerilogSimulator/blob/master/Screen%20Shot%202020-05-03%20at%2011.33.44%20PM.png)
+
+![alt text](https://github.com/Mgalleg/VerilogSimulator/blob/master/Screen%20Shot%202020-05-03%20at%2011.33.55%20PM.png)
 
 FUTURE CONSIDERATIONS
 
