@@ -4,9 +4,6 @@
 <head>
   <!-- Loading bootstrap css file to format our html -->
   <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css" />
-  <!-- Loading animation not needed... -->
-  <!-- Loading our own styles which is an animation for spinning wheels indicating waiting time -->
-  <link href="style.css" rel="stylesheet" id="bootstrap-css" />
 
   <!-- Loading bootstrap css file to format our html -->
   <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
@@ -14,17 +11,6 @@
 
   <!-- Loading axios library necessary for making HTTP GET requests -->
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-
-<style>
-  /* textarea {
-  border: 1px solid black;
-  background: green;
-  color: white;
-  padding: 10px;
-  width: 500px;
-  height: 300px;
-  } */
-  </style>
 
   <title>Verilgo Simulator</title>
 
@@ -43,28 +29,44 @@
         </div>
         <div>
           <div>
-            <h4 style="margin: 2.5em;">Paste your verilog files in the left text box below then click on simulate.</h4>
+            <h4 style="margin: 2.5em;">
+              Paste your verilog files in the left text box below then click on simulate.
+            </h4>
             <div>
               <table>
                 <tr>
                   <td>
                     <h4 style="margin-left: 10em;">Verilog Code</h4>
                     <form>
-                      <textarea class ="text" style="margin-left: 3.5em; margin-right: 3em;" id="verilog_code" rows="22" cols="50">
+                      <textarea 
+                        class="text" 
+                        style="margin-left: 3.5em; margin-right: 3em;" 
+                        id="verilog_code" 
+                        rows="22"
+                        cols="50">
                       </textarea>
                     </form>
                   </td>
                   <td>
                     <div class="text-center padding-y-sm btn-lg btn-block">
-                      <input type="submit" name="submit" id="submit" value="Simulate!" class="btn btn-primary mt-8"
+                      <input 
+                        type="submit" 
+                        name="submit" 
+                        id="submit" 
+                        value="Simulate!" 
+                        class="btn btn-primary mt-8"
                         onclick="submit()" />
                     </div>
                     <div class="text-center padding-y-sm btn-lg btn-block"> </div>
                   </td>
                   <td>
                     <h4 style="margin-left: 9em;">Output Results</h4>
-                    <textarea style="margin-left: 3em; margin-right: 2.5em;" id="output_results" rows="22" cols="50">
-                      </textarea>
+                    <textarea 
+                      style="margin-left: 3em; margin-right: 2.5em;" 
+                      id="output_results" 
+                      rows="22" 
+                      cols="50">
+                    </textarea>
                 </tr>
               </table>
               <br>

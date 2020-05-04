@@ -2,6 +2,8 @@
 
 const express = require("express");
 const app = express();
+
+// Require "fs" for writing files
 const fs = require("fs");
 
 // Using child_process to run the shell commands
@@ -37,8 +39,6 @@ app.listen(port, (err) => {
   console.log(`Listening on port: ${port}`);
 });
 
-
-
 //-----------------------------------------------------------------------------
 
 /**
@@ -49,22 +49,19 @@ app.listen(port, (err) => {
  */
 async function handleGet(req, res, query) {
 
-  const fs = require("fs");
-
+  // Display the query for debugging purposes
   console.log(Object.values(query));
-  let str = JSON.stringify(Object.values(query));
-  str = str.replace('%2C', '#')
 
-  console.log(str)
-  str = JSON.parse(str);
-  console.log(str)
-
-  fs.writeFile('input', str, (err) => {
+  // The query will get written into a file called "input" in the same directory.
+  fs.writeFile('input', Object.values(query), (err) => {
     if (err) throw err;
     console.log('The file has been saved!');
   });
 
-  exec("iverilog -o test input", (error, stdout, stderr) => {
+  // The exec() method is called in order to run terminal commands.
+  // The first command is below. It will create the executable file "e_file"
+  // The previously written input file is used below.
+  exec("iverilog -o e_file input", (error, stdout, stderr) => {
     if (error) {
       console.log(`error: ${error.message}`);
       return;
@@ -73,12 +70,15 @@ async function handleGet(req, res, query) {
       console.log(`stderr: ${stderr}`);
       return;
     }
-    // console.log(`stdout: ${stdout}`);
+    console.log(`stdout: ${stdout}`);
   });
   
+  // Artificial delay
   await delay(2000);
 
-  exec("vvp test", (error, stdout, stderr) => {
+  // The second exec() method is to run the executable file. 
+  // The output is sent to the frontend.
+  exec("vvp e_file", (error, stdout, stderr) => {
     if (error) {
       console.log(`error: ${error.message}`);
       return;
@@ -87,7 +87,7 @@ async function handleGet(req, res, query) {
       console.log(`stderr: ${stderr}`);
       return;
     }
-    // console.log(`stdout: ${stdout}`);
+    console.log(`stdout: ${stdout}`);
 
     // Convert output to JSON
     let outputString = JSON.stringify(stdout);
